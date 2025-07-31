@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kochrezepte-Verwaltung</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1>🧑🍳Kochrezepte-Verwaltung</h1>
+
+<!-- hier kann man die neue rezepte hinzufügen, also titel, Beschreibung und Zutaten, und Mengen
+danach kann man den Category auswählen-->
+
+<section id="form-section">
+    <h2>Rezept hinzufügen / bearbeiten</h2>
+    <form id="recipe-form">
+        <input type="text" id="title" placeholder="Titel" required />
+        <textarea id="description" placeholder="Beschreibung" required></textarea>
+
+        <div id="ingredients-container">
+            <h4>Zutaten</h4>
+            <input type="text" id="ingredient-name" placeholder="Zutat: " />
+            <input type="text" id="ingredient-amount" placeholder="Menge: " />
+            <button type="button" onclick="addIngredient()">hinzufügen</button>
+            <ul id="ingredient-list"></ul>
+        </div>
+<!-- oben bei Beschreibung und hier bei Zubereitungsschritte habe textarea benutzt,
+damit wenn man lange Text gibt, wird der text zu nächste Zeile weiter gehen und man kann der Feld erweitert  -->
+        <textarea id="steps" placeholder="Zubereitungsschritte" required></textarea>
+        <select id="category">
+            <option value="Frühstück">Frühstück</option>
+            <option value="Hauptgericht">Hauptgericht</option>
+            <option value="Dessert">Dessert</option>
+        </select>
+        <button type="submit">Speichern</button>
+    </form>
+</section>
+
+
+<script src="script.js"></script>
+</body>
+</html>
