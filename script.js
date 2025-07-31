@@ -42,3 +42,58 @@ function updateIngredientListUI() {
         ul.appendChild(li);
     });
 }
+//man kann die zutaten löschen
+function removeIngredient(index) {
+    currentIngredients.splice(index, 1);
+    updateIngredientListUI();
+}
+// dieser function wird die daten in localStorage speichern
+function saveRecipes() {
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+}
+
+// dieser function wird alle gespeicherte Rezepte anzeigen, und man kann nach zutaten oder Category suchen.
+function renderRecipes() {
+    list.innerHTML = "";
+    const search = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+
+// hier gehen wir durch alle gespeicherte Rezepte und dann nur Rezepte zeigen, die zu Suche oder Filter passen
+//also es kann nach Titel sein, oder halt nach zutaten
+    recipes
+        .filter(recipe => {
+            const inTitle = recipe.title.toLowerCase().includes(search);
+            const inIngredients = Array.isArray(recipe.ingredients)
+                ? recipe.ingredients.some(i =>
+                    i.name.toLowerCase().includes(search)
+                )
+                : false;
+            const categoryMatch = selectedCategory === "" || recipe.category === selectedCategory;
+            return (inTitle || inIngredients) && categoryMatch;
+        })
+        .forEach((recipe, index) => {
+            const div = document.createElement("div");
+            div.className = "recipe-card";
+
+            const ingredientItems = Array.isArray(recipe.ingredients)
+                ? recipe.ingredients
+                    .map(item => `<li>${item.amount} ${item.name}</li>`)
+                    .join("")
+                : "";
+//hier wird beim klick auf Rezept die details angezeigt, und wird auch zwei buttons gezeigt, einmal für bearbeiten, und einmal für löchen
+            div.innerHTML = `
+        <h3 class="recipe-title" onclick="toggleDetails(this)">
+          ${recipe.title} (${recipe.category})
+        </h3>
+        <div class="recipe-details" style="display: none;">
+          <p><strong>Beschreibung:</strong> ${recipe.description}</p>
+          <p><strong>Zutaten:</strong></p>
+          <ul>${ingredientItems}</ul>
+          <p><strong>Zubereitung:</strong> ${recipe.steps}</p>
+          <button onclick="editRecipe(${index})">Bearbeiten</button>
+          <button onclick="deleteRecipe(${index})">Löschen</button>
+        </div>
+      `;
+            list.appendChild(div);
+        });
+}
