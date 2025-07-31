@@ -27,3 +27,18 @@ function addIngredient() {
         document.getElementById("ingredient-amount").value = "";
     }
 }
+
+// mit dieser function kann man Zutatenliste aktualisieren und neben die zutaten der Button Delete zeigen.
+function updateIngredientListUI() {
+    const ul = document.getElementById("ingredient-list");
+    ul.innerHTML = "";
+
+    currentIngredients.forEach((ingredient, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+      ${ingredient.amount} ${ingredient.name}
+      <button type="button" onclick="removeIngredient(${index})">Delete</button>
+    `;
+        ul.appendChild(li);
+    });
+}
