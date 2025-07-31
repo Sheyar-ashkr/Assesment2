@@ -37,6 +37,24 @@ damit wenn man lange Text gibt, wird der text zu nächste Zeile weiter gehen und
     </form>
 </section>
 
+<!-- hier wurde Suche-Feld erstellt egal ob Zutaten oder Titel, und der Kategorie-Filter -->
+<section>
+    <h2>Rezepte suchen / filtern</h2>
+    <input type="text" id="search" placeholder="Suche nach Titel oder Zutaten..." />
+    <select id="category-filter">
+        <option value="">Alle Kategorien anzeigen</option>
+        <option value="Frühstück">Frühstück</option>
+        <option value="Hauptgericht">Hauptgericht</option>
+        <option value="Dessert">Dessert</option>
+    </select>
+</section>
+
+<!-- hier kann man die hinzugefügte Rezepte sehen, und die sind als liste gespeichert -->
+<section>
+    <h2>Gespeicherte Rezepte</h2>
+    <div id="recipe-list"></div>
+</section>
+
 
 <script src="script.js"></script>
 </body>
