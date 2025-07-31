@@ -67,10 +67,10 @@ input, select {
     margin-bottom: 5px;
 }
 #ingredient-list button {
-    background-color: black;
+    background-color: blue;
     color: white;
     border: none;
-    padding: 4px 8px;
+    padding: 6px 6px;
     margin-left: 10px;
     cursor: pointer;
     border-radius: 4px;
