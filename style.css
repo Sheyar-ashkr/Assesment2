@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    width: 90%;
+    margin: auto;
+    padding: 25px;
+    background-color: powderblue;
+}
+
+h1, h2 {
+    color: black;
+}
+
+form input,
+form textarea,
+form select {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 6px;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: green;
+}
+
+.recipe-card {
+    background: white;
+    border: 1px solid black;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.recipe-card p {
+    margin: 5px 0;
+}
+
+input, select {
+    padding: 8px;
+    margin-top: 5px;
+}
+
+#ingredient-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.recipe-title:hover {
+    text-decoration: underline;
+    color: skyblue;
+    cursor: pointer;
+}
+.recipe-card ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.recipe-card ul li {
+    margin-bottom: 5px;
+}
+#ingredient-list button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.5em;
+}
+
+#ingredient-list button:hover {
+    background-color: red;
+}
