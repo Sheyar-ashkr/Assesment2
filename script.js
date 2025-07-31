@@ -118,3 +118,56 @@ function editRecipe(index) {
     currentIngredients = recipe.ingredients || [];
     updateIngredientListUI();
 }
+
+// hier wird gefragt ob man wirklich das Rezept löschen will?
+//dabei wird eine Bestätigung benötigt, um das Rezept zu löschen
+//wenn ja, dann wird der Rezept gelöscht
+//dann neue Rezept Liste speichern
+function deleteRecipe(index) {
+    if (confirm("Bist du sicher dieses Rezept zu löschen?")) {
+        recipes.splice(index, 1);
+        saveRecipes();
+        renderRecipes();
+    }
+}
+//   Erstellt ein neues Rezept-Objekt mit Titel, Beschreibung, Zutaten usw.
+//   Wenn ein Rezept bearbeitet wird, wird es aktualisiert
+//   Wenn kein Rezept bearbeitet wird, wird das neue Rezept hinzugefügt
+//   Speichert die Rezepte im localStorage
+//   Aktualisiert die Anzeige
+
+form.onsubmit = function (e) {
+    e.preventDefault();
+
+    const newRecipe = {
+        title: form.title.value,
+        description: form.description.value,
+        ingredients: [...currentIngredients], // falls leer, ist das auch okay
+        steps: form.steps.value,
+        category: form.category.value,
+    };
+
+    const editIndex = form.dataset.edit;
+
+    if (editIndex) {
+        recipes[editIndex] = newRecipe;
+        delete form.dataset.edit;
+    } else {
+        recipes.push(newRecipe);
+    }
+
+    saveRecipes();
+    renderRecipes();
+
+    form.reset();
+    currentIngredients = [];
+    updateIngredientListUI();
+};
+
+
+// hier wird eine echtzeit Filter nach Suche oder Category gegeben
+searchInput.addEventListener("input", renderRecipes);
+categoryFilter.addEventListener("change", renderRecipes);
+
+//letzte gespeicherte daten werden geladen
+renderRecipes();
