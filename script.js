@@ -97,3 +97,24 @@ function renderRecipes() {
             list.appendChild(div);
         });
 }
+//um gespeicherte Rezepte Details anzuzeigen oder verstecken
+function toggleDetails(titleElement) {
+    const details = titleElement.nextElementSibling;
+    details.style.display = details.style.display === "none" ? "block" : "none";
+}
+
+// mit der function kann man die Rezepte bearbeiten
+//also man kann title, oder beschreibung oder Zubereitungsschritte oder Kategorie ändern
+//und wir benutzen hier form.dataset.edit = index; damit wir die vorhandene Rezept aktualisieren, nicht eine neue hinzufügen
+function editRecipe(index) {
+    const recipe = recipes[index];
+
+    form.title.value = recipe.title;
+    form.description.value = recipe.description;
+    form.steps.value = recipe.steps;
+    form.category.value = recipe.category;
+    form.dataset.edit = index;
+
+    currentIngredients = recipe.ingredients || [];
+    updateIngredientListUI();
+}
